@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Noise Remover — Remova ruído de áudio online grátis, sem cadastro</title>
+  <meta name="description" content="Remova o ruído de fundo das suas gravações no navegador. Removedor de ruído grátis para voz, podcasts e reuniões. Os arquivos nunca saem do seu dispositivo." />
+  <link rel="canonical" href="https://ai-noise-remover.pages.dev/pt/" />
+  <link rel="alternate" hreflang="en" href="https://ai-noise-remover.pages.dev/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://ai-noise-remover.pages.dev/zh/" />
+  <link rel="alternate" hreflang="ja" href="https://ai-noise-remover.pages.dev/ja/" />
+  <link rel="alternate" hreflang="ko" href="https://ai-noise-remover.pages.dev/ko/" />
+  <link rel="alternate" hreflang="es" href="https://ai-noise-remover.pages.dev/es/" />
+  <link rel="alternate" hreflang="pt" href="https://ai-noise-remover.pages.dev/pt/" />
+  <link rel="alternate" hreflang="x-default" href="https://ai-noise-remover.pages.dev/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI Noise Remover — Áudio limpo no seu navegador" />
+  <meta property="og:description" content="Remova ruído de fundo direto no navegador. Privado, grátis, sem cadastro." />
+  <meta property="og:url" content="https://ai-noise-remover.pages.dev/pt/" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "AI Noise Remover",
+ "url": "https://ai-noise-remover.pages.dev/pt/",
+ "applicationCategory": "MultimediaApplication",
+ "operatingSystem": "Any",
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ }
+}
+  </script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Meu áudio é enviado para algum lugar?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Não. Todo o processamento acontece localmente no seu navegador. Seu arquivo nunca sai do seu dispositivo."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Quais formatos são aceitos?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "MP3, WAV, M4A, OGG, WebM e a maioria dos formatos comuns de áudio ou vídeo. A saída é um WAV padrão."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "É realmente grátis?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Sim. O removedor de ruído no navegador é totalmente grátis. Um plano pago com aprimoramento IA de qualidade de estúdio chega em breve."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Como é a qualidade?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Excelente para remover ruído constante — chiado, ventilador, ar-condicionado, ruído elétrico — mantendo as vozes claras e naturais."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Funciona no celular?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Sim, em qualquer navegador moderno. Gravações muito longas podem exigir um computador."
+   }
+  }
+ ]
+}
+  </script>
+
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/pt/">🔇 AI Noise Remover</a>
+    <nav class="topnav">
+      <a href="/pt/pricing.html">Preços</a>
+      <a href="/pt/#tool">Escolha um arquivo de áudio</a>
+      <span class="langs">
+      <a class="lang" href="/">EN</a>
+      <a class="lang" href="/zh/">中文</a>
+      <a class="lang" href="/ja/">日本語</a>
+      <a class="lang" href="/ko/">한국어</a>
+      <a class="lang" href="/es/">ES</a>
+      <span class="lang cur">PT</span>
+      </span>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>AI Noise Remover</h1>
+      <p class="sub">Envie uma gravação e receba voz limpa em segundos. Tudo roda no seu navegador — seu áudio nunca sai do seu dispositivo. Grátis, sem cadastro.</p>
+      <a class="btn" href="#tool">Usar agora</a>
+    </section>
+
+<section class="tool" id="tool">
+  <h2>Limpe seu áudio agora</h2>
+  <div id="dropZone" class="dropzone">
+    <p class="dz-main">🎵 Escolha um arquivo de áudio</p>
+    <p class="dz-sub">ou arraste e solte um arquivo de áudio ou vídeo aqui</p>
+    <input type="file" id="file" accept="audio/*,video/*" />
+  </div>
+  <div class="controls">
+    <label for="strength">Intensidade da redução</label>
+    <select id="strength">
+      <option value="low">Leve</option>
+      <option value="medium" selected>Equilibrado</option>
+      <option value="high">Agressivo</option>
+    </select>
+  </div>
+  <p id="status" class="status" aria-live="polite"></p>
+  <div class="compare">
+    <div class="cmp"><h3>Antes</h3><audio id="playerBefore" controls></audio></div>
+    <div class="cmp"><h3>Depois</h3><audio id="playerAfter" controls></audio></div>
+  </div>
+  <a id="download" class="btn" style="display:none" href="#">↓ Baixar áudio limpo (WAV)</a>
+</section>
+    <section class="steps">
+      <h2>Como funciona</h2>
+      <ol class="cards">
+        <li class="card"><span class="num">1</span><h3>Envie</h3><p>Solte um áudio de voz, podcast, entrevista ou aula gravada.</p></li>
+        <li class="card"><span class="num">2</span><h3>Analisamos</h3><p>O perfil de ruído é medido direto no seu navegador.</p></li>
+        <li class="card"><span class="num">3</span><h3>Baixe</h3><p>Receba um WAV limpo em segundos. Nada foi enviado a servidor algum.</p></li>
+      </ol>
+    </section>
+    <section class="why">
+      <h2>Por que AI Noise Remover</h2>
+      <div class="cards">
+        <div class="card"><span class="emoji">🔒</span><h3>100% privado</h3><p>A redução de ruído roda no seu próprio dispositivo. Seu áudio nunca toca um servidor.</p></div>
+        <div class="card"><span class="emoji">⚡</span><h3>Sem espera</h3><p>Sem filas, sem uploads, sem contas. A maioria dos arquivos termina em segundos.</p></div>
+        <div class="card"><span class="emoji">🎙️</span><h3>Feito para voz</h3><p>Ajustado para podcasts, áudios de voz, aulas online e entrevistas.</p></div>
+      </div>
+    </section>
+    <section class="usecases">
+      <h2>Para quem é</h2>
+      <p class="lead">Chiado, zumbido de ventilador, ruído elétrico — removidos automaticamente.</p>
+      <ul>
+        <li>Podcasters limpando gravações brutas</li>
+        <li>Estudiantes limpando aulas gravadas</li>
+        <li>Jornalistas polindo entrevistas</li>
+        <li>Trabalhadores remotos consertando gravações de reuniões</li>
+      </ul>
+    </section>
+    <section class="faq">
+      <h2>FAQ</h2>
+      <details><summary>Meu áudio é enviado para algum lugar?</summary><p>Não. Todo o processamento acontece localmente no seu navegador. Seu arquivo nunca sai do seu dispositivo.</p></details>
+      <details><summary>Quais formatos são aceitos?</summary><p>MP3, WAV, M4A, OGG, WebM e a maioria dos formatos comuns de áudio ou vídeo. A saída é um WAV padrão.</p></details>
+      <details><summary>É realmente grátis?</summary><p>Sim. O removedor de ruído no navegador é totalmente grátis. Um plano pago com aprimoramento IA de qualidade de estúdio chega em breve.</p></details>
+      <details><summary>Como é a qualidade?</summary><p>Excelente para remover ruído constante — chiado, ventilador, ar-condicionado, ruído elétrico — mantendo as vozes claras e naturais.</p></details>
+      <details><summary>Funciona no celular?</summary><p>Sim, em qualquer navegador moderno. Gravações muito longas podem exigir um computador.</p></details>
+    </section>
+  </main>
+  <footer>
+    <p>© 2026 AI Noise Remover · <a href="/pt/pricing.html">Preços</a></p>
+  </footer>
+  <script>window.UI_STRINGS = {"choose":"Escolha um arquivo de áudio","drop":"ou arraste e solte um arquivo de áudio ou vídeo aqui","analyzing":"Analisando o perfil de ruído…","denoising":"Reduzindo ruído… {p}%","done":"Pronto ✓ Compare os dois players e baixe.","noAudio":"Não foi encontrada faixa de áudio neste arquivo.","decodeFail":"Formato não suportado — tente MP3, WAV, M4A, OGG ou WebM.","download":"↓ Baixar áudio limpo (WAV)","before":"Antes","after":"Depois"};</script>
+  <script src="/js/app.js" defer></script>
+
+</body>
+</html>

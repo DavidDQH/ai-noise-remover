@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ai-noise-remover.pages.dev/sitemap.xml

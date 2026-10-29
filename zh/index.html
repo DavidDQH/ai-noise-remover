@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI 降噪工具 — 浏览器在线去除录音噪音，免费无需注册</title>
+  <meta name="description" content="在浏览器里一键去除录音中的背景噪音。适用于人声、播客、网课、会议录音。文件不上传服务器，100% 本地处理，完全免费。" />
+  <link rel="canonical" href="https://ai-noise-remover.pages.dev/zh/" />
+  <link rel="alternate" hreflang="en" href="https://ai-noise-remover.pages.dev/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://ai-noise-remover.pages.dev/zh/" />
+  <link rel="alternate" hreflang="ja" href="https://ai-noise-remover.pages.dev/ja/" />
+  <link rel="alternate" hreflang="ko" href="https://ai-noise-remover.pages.dev/ko/" />
+  <link rel="alternate" hreflang="es" href="https://ai-noise-remover.pages.dev/es/" />
+  <link rel="alternate" hreflang="pt" href="https://ai-noise-remover.pages.dev/pt/" />
+  <link rel="alternate" hreflang="x-default" href="https://ai-noise-remover.pages.dev/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI 降噪工具 — 浏览器里一键去掉录音噪音" />
+  <meta property="og:description" content="录音有底噪？浏览器本地降噪，文件不上传，免费无需注册。" />
+  <meta property="og:url" content="https://ai-noise-remover.pages.dev/zh/" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "AI 降噪工具",
+ "url": "https://ai-noise-remover.pages.dev/zh/",
+ "applicationCategory": "MultimediaApplication",
+ "operatingSystem": "Any",
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ }
+}
+  </script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "我的音频会被上传吗？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "不会。全部处理都在你浏览器的本地完成，文件从不离开你的设备。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "支持哪些格式？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "MP3、WAV、M4A、OGG、WebM 以及绝大多数常见音视频格式。输出为标准 WAV 文件。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "真的免费吗？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "是。浏览器端降噪完全免费。专业级 AI 增强的付费方案即将推出。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "效果怎么样？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "对持续性背景噪音效果最好——嘶嘶声、风扇声、空调声、电流声——同时保持人声清晰自然。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "手机上能用吗？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "可以，任何现代浏览器都行。超长录音建议用电脑处理以获得最佳性能。"
+   }
+  }
+ ]
+}
+  </script>
+
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/zh/">🔇 AI 降噪工具</a>
+    <nav class="topnav">
+      <a href="/zh/pricing.html">定价</a>
+      <a href="/zh/#tool">选择音频文件</a>
+      <span class="langs">
+      <a class="lang" href="/">EN</a>
+      <span class="lang cur">中文</span>
+      <a class="lang" href="/ja/">日本語</a>
+      <a class="lang" href="/ko/">한국어</a>
+      <a class="lang" href="/es/">ES</a>
+      <a class="lang" href="/pt/">PT</a>
+      </span>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>AI 降噪工具</h1>
+      <p class="sub">上传录音，几秒得到干净人声。全部在你的浏览器里完成——音频永远不离开你的设备。免费，无需注册。</p>
+      <a class="btn" href="#tool">立即使用</a>
+    </section>
+
+<section class="tool" id="tool">
+  <h2>立即清理你的音频</h2>
+  <div id="dropZone" class="dropzone">
+    <p class="dz-main">🎵 选择音频文件</p>
+    <p class="dz-sub">或直接把音频/视频文件拖到这里</p>
+    <input type="file" id="file" accept="audio/*,video/*" />
+  </div>
+  <div class="controls">
+    <label for="strength">降噪强度</label>
+    <select id="strength">
+      <option value="low">轻度</option>
+      <option value="medium" selected>均衡</option>
+      <option value="high">强力</option>
+    </select>
+  </div>
+  <p id="status" class="status" aria-live="polite"></p>
+  <div class="compare">
+    <div class="cmp"><h3>原始</h3><audio id="playerBefore" controls></audio></div>
+    <div class="cmp"><h3>降噪后</h3><audio id="playerAfter" controls></audio></div>
+  </div>
+  <a id="download" class="btn" style="display:none" href="#">↓ 下载降噪后音频（WAV）</a>
+</section>
+    <section class="steps">
+      <h2>怎么用</h2>
+      <ol class="cards">
+        <li class="card"><span class="num">1</span><h3>上传</h3><p>拖入语音备忘、播客素材、采访或网课录音。</p></li>
+        <li class="card"><span class="num">2</span><h3>自动分析</h3><p>在浏览器里直接测量录音的噪音特征。</p></li>
+        <li class="card"><span class="num">3</span><h3>下载</h3><p>几秒拿到干净的 WAV 文件。全程没有任何上传。</p></li>
+      </ol>
+    </section>
+    <section class="why">
+      <h2>为什么选 AI 降噪工具</h2>
+      <div class="cards">
+        <div class="card"><span class="emoji">🔒</span><h3>100% 隐私</h3><p>降噪在你自己的设备上运行，音频不经过任何服务器。</p></div>
+        <div class="card"><span class="emoji">⚡</span><h3>无需等待</h3><p>没有排队、没有上传、不用注册。大多数文件几秒完成。</p></div>
+        <div class="card"><span class="emoji">🎙️</span><h3>为人声优化</h3><p>针对播客、语音备忘、网课和采访录音专门调校。</p></div>
+      </div>
+    </section>
+    <section class="usecases">
+      <h2>适合谁用</h2>
+      <p class="lead">底噪、风扇声、电流声、设备嘶嘶声——自动清除。</p>
+      <ul>
+        <li>播客主清理原始素材</li>
+        <li>学生清理网课录音</li>
+        <li>记者整理采访音频</li>
+        <li>远程办公修复会议录音</li>
+      </ul>
+    </section>
+    <section class="faq">
+      <h2>FAQ</h2>
+      <details><summary>我的音频会被上传吗？</summary><p>不会。全部处理都在你浏览器的本地完成，文件从不离开你的设备。</p></details>
+      <details><summary>支持哪些格式？</summary><p>MP3、WAV、M4A、OGG、WebM 以及绝大多数常见音视频格式。输出为标准 WAV 文件。</p></details>
+      <details><summary>真的免费吗？</summary><p>是。浏览器端降噪完全免费。专业级 AI 增强的付费方案即将推出。</p></details>
+      <details><summary>效果怎么样？</summary><p>对持续性背景噪音效果最好——嘶嘶声、风扇声、空调声、电流声——同时保持人声清晰自然。</p></details>
+      <details><summary>手机上能用吗？</summary><p>可以，任何现代浏览器都行。超长录音建议用电脑处理以获得最佳性能。</p></details>
+    </section>
+  </main>
+  <footer>
+    <p>© 2026 AI Noise Remover · <a href="/zh/pricing.html">定价</a></p>
+  </footer>
+  <script>window.UI_STRINGS = {"choose":"选择音频文件","drop":"或直接把音频/视频文件拖到这里","analyzing":"正在分析噪音特征…","denoising":"正在降噪… {p}%","done":"完成 ✓ 对比上下两个播放器，满意就下载。","noAudio":"这个文件里没有找到音频轨道。","decodeFail":"暂不支持该格式——请换 MP3、WAV、M4A、OGG 或 WebM。","download":"↓ 下载降噪后音频（WAV）","before":"原始","after":"降噪后"};</script>
+  <script src="/js/app.js" defer></script>
+
+</body>
+</html>

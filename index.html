@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Noise Remover — Clean Audio Online Free, No Sign-Up</title>
+  <meta name="description" content="Remove background noise from audio in your browser. Free AI noise remover for voice recordings, podcasts and meetings. Files never leave your device. No account needed." />
+  <link rel="canonical" href="https://ai-noise-remover.pages.dev/" />
+  <link rel="alternate" hreflang="en" href="https://ai-noise-remover.pages.dev/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://ai-noise-remover.pages.dev/zh/" />
+  <link rel="alternate" hreflang="ja" href="https://ai-noise-remover.pages.dev/ja/" />
+  <link rel="alternate" hreflang="ko" href="https://ai-noise-remover.pages.dev/ko/" />
+  <link rel="alternate" hreflang="es" href="https://ai-noise-remover.pages.dev/es/" />
+  <link rel="alternate" hreflang="pt" href="https://ai-noise-remover.pages.dev/pt/" />
+  <link rel="alternate" hreflang="x-default" href="https://ai-noise-remover.pages.dev/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI Noise Remover — Clean Audio in Your Browser" />
+  <meta property="og:description" content="Remove background noise from recordings right in your browser. Private, free, no sign-up." />
+  <meta property="og:url" content="https://ai-noise-remover.pages.dev/" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "AI Noise Remover",
+ "url": "https://ai-noise-remover.pages.dev/",
+ "applicationCategory": "MultimediaApplication",
+ "operatingSystem": "Any",
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ }
+}
+  </script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Is my audio uploaded anywhere?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. All processing happens locally in your browser using JavaScript. Your file never leaves your device."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What formats are supported?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "MP3, WAV, M4A, OGG, WebM and most common audio or video formats. Output is a standard WAV file."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is it really free?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. The browser-based noise remover is completely free. A paid plan with studio-grade AI enhancement is coming soon."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How good is the quality?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "It excels at removing steady background noise — hiss, fan hum, air conditioning, electrical buzz — while keeping voices clear and natural."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does it work on my phone?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes, in any modern browser. Very long recordings may need a desktop for best performance."
+   }
+  }
+ ]
+}
+  </script>
+
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/">🔇 AI Noise Remover</a>
+    <nav class="topnav">
+      <a href="/pricing.html">Pricing</a>
+      <a href="/#tool">Choose an audio file</a>
+      <span class="langs">
+      <span class="lang cur">EN</span>
+      <a class="lang" href="/zh/">中文</a>
+      <a class="lang" href="/ja/">日本語</a>
+      <a class="lang" href="/ko/">한국어</a>
+      <a class="lang" href="/es/">ES</a>
+      <a class="lang" href="/pt/">PT</a>
+      </span>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>AI Noise Remover</h1>
+      <p class="sub">Upload a recording, get clean voice in seconds. Everything runs in your browser — your audio never leaves your device. Free, no sign-up.</p>
+      <a class="btn" href="#tool">Use it now</a>
+    </section>
+
+<section class="tool" id="tool">
+  <h2>Clean your audio now</h2>
+  <div id="dropZone" class="dropzone">
+    <p class="dz-main">🎵 Choose an audio file</p>
+    <p class="dz-sub">or drag & drop an audio / video file here</p>
+    <input type="file" id="file" accept="audio/*,video/*" />
+  </div>
+  <div class="controls">
+    <label for="strength">Noise reduction strength</label>
+    <select id="strength">
+      <option value="low">Gentle</option>
+      <option value="medium" selected>Balanced</option>
+      <option value="high">Aggressive</option>
+    </select>
+  </div>
+  <p id="status" class="status" aria-live="polite"></p>
+  <div class="compare">
+    <div class="cmp"><h3>Before</h3><audio id="playerBefore" controls></audio></div>
+    <div class="cmp"><h3>After</h3><audio id="playerAfter" controls></audio></div>
+  </div>
+  <a id="download" class="btn" style="display:none" href="#">↓ Download cleaned audio (WAV)</a>
+</section>
+    <section class="steps">
+      <h2>How it works</h2>
+      <ol class="cards">
+        <li class="card"><span class="num">1</span><h3>Upload</h3><p>Drop in a voice memo, podcast take, interview or lecture recording.</p></li>
+        <li class="card"><span class="num">2</span><h3>We analyze</h3><p>The noise profile of your recording is measured right in your browser.</p></li>
+        <li class="card"><span class="num">3</span><h3>Download</h3><p>Get a clean WAV file in seconds. Nothing was ever uploaded to a server.</p></li>
+      </ol>
+    </section>
+    <section class="why">
+      <h2>Why AI Noise Remover</h2>
+      <div class="cards">
+        <div class="card"><span class="emoji">🔒</span><h3>100% private</h3><p>Denoising runs on your own device. Your audio never touches a server.</p></div>
+        <div class="card"><span class="emoji">⚡</span><h3>No waiting</h3><p>No queues, no uploads, no accounts. Most files finish in seconds.</p></div>
+        <div class="card"><span class="emoji">🎙️</span><h3>Made for voice</h3><p>Tuned for podcasts, voice memos, online classes and interviews.</p></div>
+      </div>
+    </section>
+    <section class="usecases">
+      <h2>Who it's for</h2>
+      <p class="lead">Background hiss, fan hum, room echo hiss, electrical buzz — cleaned automatically.</p>
+      <ul>
+        <li>Podcasters cleaning up raw takes</li>
+        <li>Students clearing up lecture recordings</li>
+        <li>Journalists polishing interview audio</li>
+        <li>Remote workers fixing meeting recordings</li>
+      </ul>
+    </section>
+    <section class="faq">
+      <h2>FAQ</h2>
+      <details><summary>Is my audio uploaded anywhere?</summary><p>No. All processing happens locally in your browser using JavaScript. Your file never leaves your device.</p></details>
+      <details><summary>What formats are supported?</summary><p>MP3, WAV, M4A, OGG, WebM and most common audio or video formats. Output is a standard WAV file.</p></details>
+      <details><summary>Is it really free?</summary><p>Yes. The browser-based noise remover is completely free. A paid plan with studio-grade AI enhancement is coming soon.</p></details>
+      <details><summary>How good is the quality?</summary><p>It excels at removing steady background noise — hiss, fan hum, air conditioning, electrical buzz — while keeping voices clear and natural.</p></details>
+      <details><summary>Does it work on my phone?</summary><p>Yes, in any modern browser. Very long recordings may need a desktop for best performance.</p></details>
+    </section>
+  </main>
+  <footer>
+    <p>© 2026 AI Noise Remover · <a href="/pricing.html">Pricing</a></p>
+  </footer>
+  <script>window.UI_STRINGS = {"choose":"Choose an audio file","drop":"or drag & drop an audio / video file here","analyzing":"Analyzing noise profile…","denoising":"Denoising… {p}%","done":"Done ✓ Compare the two players, then download.","noAudio":"Could not find an audio track in this file.","decodeFail":"This file format is not supported — try MP3, WAV, M4A, OGG or WebM.","download":"↓ Download cleaned audio (WAV)","before":"Before","after":"After"};</script>
+  <script src="/js/app.js" defer></script>
+
+</body>
+</html>

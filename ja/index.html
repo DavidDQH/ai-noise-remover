@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI ノイズリムーバー — ブラウザで録音ノイズを無料除去、登録不要</title>
+  <meta name="description" content="ブラウザ上で録音の背景ノイズをワンクリック除去。ポッドキャスト、オンライン授業、会議録音に。ファイルはアップロードされず、100%端末内処理・完全無料。" />
+  <link rel="canonical" href="https://ai-noise-remover.pages.dev/ja/" />
+  <link rel="alternate" hreflang="en" href="https://ai-noise-remover.pages.dev/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://ai-noise-remover.pages.dev/zh/" />
+  <link rel="alternate" hreflang="ja" href="https://ai-noise-remover.pages.dev/ja/" />
+  <link rel="alternate" hreflang="ko" href="https://ai-noise-remover.pages.dev/ko/" />
+  <link rel="alternate" hreflang="es" href="https://ai-noise-remover.pages.dev/es/" />
+  <link rel="alternate" hreflang="pt" href="https://ai-noise-remover.pages.dev/pt/" />
+  <link rel="alternate" hreflang="x-default" href="https://ai-noise-remover.pages.dev/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI ノイズリムーバー — ブラウザでノイズ除去" />
+  <meta property="og:description" content="録音のノイズをブラウザ内で除去。ファイル送信なし、無料・登録不要。" />
+  <meta property="og:url" content="https://ai-noise-remover.pages.dev/ja/" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "AI ノイズリムーバー",
+ "url": "https://ai-noise-remover.pages.dev/ja/",
+ "applicationCategory": "MultimediaApplication",
+ "operatingSystem": "Any",
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ }
+}
+  </script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "音声はアップロードされますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "いいえ。すべての処理はブラウザ内でローカルに行われ、ファイルは端末の外に出ません。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "対応形式は？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "MP3・WAV・M4A・OGG・WebM など主要な音声・動画形式に対応。出力は標準 WAV です。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "本当に無料？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "はい。ブラウザ版ノイズ除去は完全無料。スタジオ品質の AI 強化は近日公開予定です。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "品質はどうですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "定常的な背景ノイズ（ヒス音、ファン音、エアコン、電気的雑音）の除去に優れ、音声はクリアで自然なまま保たれます。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "スマホでも使えますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "はい、最新のブラウザなら動作します。長時間録音は PC での処理を推奨します。"
+   }
+  }
+ ]
+}
+  </script>
+
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/ja/">🔇 AI ノイズリムーバー</a>
+    <nav class="topnav">
+      <a href="/ja/pricing.html">料金</a>
+      <a href="/ja/#tool">音声ファイルを選択</a>
+      <span class="langs">
+      <a class="lang" href="/">EN</a>
+      <a class="lang" href="/zh/">中文</a>
+      <span class="lang cur">日本語</span>
+      <a class="lang" href="/ko/">한국어</a>
+      <a class="lang" href="/es/">ES</a>
+      <a class="lang" href="/pt/">PT</a>
+      </span>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>AI ノイズリムーバー</h1>
+      <p class="sub">録音をアップロードして、数秒でクリアな音声に。すべてブラウザ内で処理され、音声は端末の外に出ません。無料・登録不要。</p>
+      <a class="btn" href="#tool">今すぐ使う</a>
+    </section>
+
+<section class="tool" id="tool">
+  <h2>今すぐ音声をクリーンアップ</h2>
+  <div id="dropZone" class="dropzone">
+    <p class="dz-main">🎵 音声ファイルを選択</p>
+    <p class="dz-sub">または音声・動画ファイルをここにドロップ</p>
+    <input type="file" id="file" accept="audio/*,video/*" />
+  </div>
+  <div class="controls">
+    <label for="strength">ノイズ除去の強さ</label>
+    <select id="strength">
+      <option value="low">軽め</option>
+      <option value="medium" selected>バランス</option>
+      <option value="high">強力</option>
+    </select>
+  </div>
+  <p id="status" class="status" aria-live="polite"></p>
+  <div class="compare">
+    <div class="cmp"><h3>処理前</h3><audio id="playerBefore" controls></audio></div>
+    <div class="cmp"><h3>処理後</h3><audio id="playerAfter" controls></audio></div>
+  </div>
+  <a id="download" class="btn" style="display:none" href="#">↓ クリーンな音声をダウンロード（WAV）</a>
+</section>
+    <section class="steps">
+      <h2>使い方</h2>
+      <ol class="cards">
+        <li class="card"><span class="num">1</span><h3>アップロード</h3><p>ボイスメモ、ポッドキャスト、インタビュー、講義録音をドロップ。</p></li>
+        <li class="card"><span class="num">2</span><h3>自動解析</h3><p>録音のノイズ特性をブラウザ内で測定します。</p></li>
+        <li class="card"><span class="num">3</span><h3>ダウンロード</h3><p>数秒でクリーンな WAV を取得。アップロードは一切ありません。</p></li>
+      </ol>
+    </section>
+    <section class="why">
+      <h2>選ばれる理由</h2>
+      <div class="cards">
+        <div class="card"><span class="emoji">🔒</span><h3>100% プライベート</h3><p>処理は自分の端末上で実行。音声はサーバーに送られません。</p></div>
+        <div class="card"><span class="emoji">⚡</span><h3>待ち時間ゼロ</h3><p>順番待ち・アップロード・アカウント登録は不要。大半のファイルは数秒で完了。</p></div>
+        <div class="card"><span class="emoji">🎙️</span><h3>音声に最適化</h3><p>ポッドキャスト・ボイスメモ・オンライン授業・インタビュー向けに調整。</p></div>
+      </div>
+    </section>
+    <section class="usecases">
+      <h2>こんな方に</h2>
+      <p class="lead">ハム音、ファン音、ノイズ、電気的雑音を自動除去。</p>
+      <ul>
+        <li>ポッドキャストの素材整理</li>
+        <li>講義録音の聞き取り改善</li>
+        <li>インタビュー音声のノイズ除去</li>
+        <li>オンライン会議録音の修復</li>
+      </ul>
+    </section>
+    <section class="faq">
+      <h2>FAQ</h2>
+      <details><summary>音声はアップロードされますか？</summary><p>いいえ。すべての処理はブラウザ内でローカルに行われ、ファイルは端末の外に出ません。</p></details>
+      <details><summary>対応形式は？</summary><p>MP3・WAV・M4A・OGG・WebM など主要な音声・動画形式に対応。出力は標準 WAV です。</p></details>
+      <details><summary>本当に無料？</summary><p>はい。ブラウザ版ノイズ除去は完全無料。スタジオ品質の AI 強化は近日公開予定です。</p></details>
+      <details><summary>品質はどうですか？</summary><p>定常的な背景ノイズ（ヒス音、ファン音、エアコン、電気的雑音）の除去に優れ、音声はクリアで自然なまま保たれます。</p></details>
+      <details><summary>スマホでも使えますか？</summary><p>はい、最新のブラウザなら動作します。長時間録音は PC での処理を推奨します。</p></details>
+    </section>
+  </main>
+  <footer>
+    <p>© 2026 AI Noise Remover · <a href="/ja/pricing.html">料金</a></p>
+  </footer>
+  <script>window.UI_STRINGS = {"choose":"音声ファイルを選択","drop":"または音声・動画ファイルをここにドロップ","analyzing":"ノイズ特性を解析中…","denoising":"ノイズ除去中… {p}%","done":"完了 ✓ 2つのプレーヤーを比較して、よければダウンロード。","noAudio":"このファイルに音声トラックが見つかりません。","decodeFail":"この形式は未対応です。MP3・WAV・M4A・OGG・WebM をお試しください。","download":"↓ クリーンな音声をダウンロード（WAV）","before":"処理前","after":"処理後"};</script>
+  <script src="/js/app.js" defer></script>
+
+</body>
+</html>
