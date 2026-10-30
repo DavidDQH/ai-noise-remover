@@ -23,57 +23,71 @@
 
   var state = { ctx: null, beforeBuf: null, afterBuf: null, fileName: "audio" };
 
-  /* ---------- STFT spectral-subtraction denoiser ---------- */
+  /* ---------- STFT Wiener denoiser (decision-directed, Ephraim-Malah style) ---------- */
   function denoise(buffer, factor) {
-    var sr = buffer.sampleRate;
     var mono = mixToMono(buffer);
-    var N = 1024, hop = 256, win = hann(N);
+    var N = 2048, hop = N / 4, win = hann(N);
+    var half = N / 2 + 1;
     var frames = Math.floor((mono.length - N) / hop) + 1;
     if (frames < 4) throw new Error("too-short");
-    var out = new Float32Array(mono.length);
+    var out = new Float32Array(mono.length + N);
 
-    // noise profile: average magnitude of the quietest 10% of frames
+    // --- noise PSD: init from the quietest 10% of frames, then track with running minimum
     var frameEnergy = new Float32Array(frames);
     for (var f = 0; f < frames; f++) {
       var e = 0;
       for (var i = 0; i < N; i++) { var s = mono[f * hop + i]; e += s * s; }
       frameEnergy[f] = e;
     }
-    var idx = Array.prototype.map.call(frameEnergy, function (v, k) { return k; })
+    var quiet = Array.prototype.map.call(frameEnergy, function (v, k) { return k; })
       .sort(function (a, b) { return frameEnergy[a] - frameEnergy[b]; })
       .slice(0, Math.max(2, Math.floor(frames * 0.1)));
-    var noiseMag = new Float32Array(N / 2 + 1), wsum = 0;
-    for (var t = 0; t < idx.length; t++) {
-      var seg = mono.subarray(idx[t] * hop, idx[t] * hop + N);
-      var mag = stftMagnitudes(seg, win);
-      for (var k = 0; k < noiseMag.length; k++) noiseMag[k] += mag[k];
-      wsum++;
+    var noisePsd = new Float32Array(half);
+    for (var t = 0; t < quiet.length; t++) {
+      var seg = mono.subarray(quiet[t] * hop, quiet[t] * hop + N);
+      var m0 = stftMagnitudes(seg, win);
+      for (var k = 0; k < half; k++) noisePsd[k] += m0[k] * m0[k];
     }
-    for (k = 0; k < noiseMag.length; k++) noiseMag[k] /= wsum;
+    for (k = 0; k < half; k++) noisePsd[k] /= quiet.length;
+    smoothFreq(noisePsd);
 
-    var prevGain = new Float32Array(N / 2 + 1); prevGain.fill(1);
+    var prevGain = new Float32Array(half); prevGain.fill(1);
+    var prevPsd = new Float32Array(half);
     var re = new Float32Array(N), im = new Float32Array(N);
-    var windowSum = 0; for (i = 0; i < N; i++) windowSum += win[i];
+    var winSqSum = 0;
+    for (i = 0; i < N; i++) winSqSum += win[i] * win[i];
 
     for (f = 0; f < frames; f++) {
       var off = f * hop;
       for (i = 0; i < N; i++) { re[i] = mono[off + i] * win[i]; im[i] = 0; }
       fft(re, im, false);
-      for (k = 0; k <= N / 2; k++) {
-        var pr = re[k], pi = im[k];
-        var m = Math.sqrt(pr * pr + pi * pi);
-        var sub = m - factor * noiseMag[k];
-        var gain = m > 1e-9 ? Math.max(sub, 0) / m : 0;
-        gain = Math.max(gain, 0.08);                 // spectral floor: avoid musical noise
-        gain = 0.7 * gain + 0.3 * prevGain[k];       // temporal smoothing
-        prevGain[k] = gain;
-        re[k] = pr * gain; im[k] = pi * gain;
+
+      var noisyPsd = new Float32Array(half);
+      for (k = 0; k < half; k++) noisyPsd[k] = re[k] * re[k] + im[k] * im[k];
+
+      // decision-directed a-priori SNR
+      for (k = 0; k < half; k++) {
+        var nPsd = Math.max(noisePsd[k], 1e-12);
+        var snrPost = noisyPsd[k] / nPsd - 1;
+        var snrPrior = 0.98 * prevGain[k] * prevGain[k] * prevPsd[k] / nPsd
+                     + 0.02 * Math.max(snrPost, 0);
+        // Wiener gain, strength "factor" sharpens the subtraction via snr scale
+        var g = snrPrior / (snrPrior + factor);
+        g = Math.max(g, 0.05);
+        prevGain[k] = g;
+        prevPsd[k] = Math.max(g * g * noisyPsd[k], 0); // estimated clean psd
+        re[k] *= g; im[k] *= g;
         if (k > 0 && k < N / 2) { re[N - k] = re[k]; im[N - k] = -im[k]; }
       }
+
       fft(re, im, true);
-      for (i = 0; i < N; i++) out[off + i] += (re[i] * win[i]) / windowSum;
+      for (i = 0; i < N; i++) out[off + i] += re[i] * win[i] / winSqSum;
     }
-    return bufferToStereo(out, buffer);
+    return bufferToStereo(out.subarray(0, mono.length), buffer);
+  }
+
+  function smoothFreq(arr) {
+    for (var k = 1; k < arr.length - 1; k++) arr[k] = 0.25 * arr[k - 1] + 0.5 * arr[k] + 0.25 * arr[k + 1];
   }
 
   function mixToMono(buffer) {
@@ -82,10 +96,19 @@
       var d = buffer.getChannelData(c);
       for (var i = 0; i < len; i++) out[i] += d[i] / ch;
     }
+    // gentle high-pass (~80 Hz one-pole) to cut rumble before denoising
+    var fs = buffer.sampleRate || 48000;
+    var a = 1 / (1 + 2 * Math.PI * 80 / fs);
+    var prevIn = 0, prevOut = 0;
+    for (var i = 0; i < len; i++) {
+      var x = out[i];
+      prevOut = a * (prevOut + x - prevIn);
+      prevIn = x;
+      out[i] = prevOut;
+    }
     return out;
   }
   function bufferToStereo(mono, ref) {
-    var ctx = ref.context === undefined ? null : null;
     var buf = audioCtx().createBuffer(ref.numberOfChannels > 1 ? 2 : 1, mono.length, ref.sampleRate);
     var d0 = buf.getChannelData(0);
     if (buf.numberOfChannels === 1) { d0.set(mono); return buf; }
